@@ -82,7 +82,7 @@ target/
 .idea/
 
 # Mac隐藏文件
-.Ds_Store
+.DS_Store
 
 # IPython
 profile_default/
