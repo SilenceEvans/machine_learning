@@ -62,15 +62,15 @@ conda install sklearn
 
 Pycharm——preferences——project，然后选择齿轮按钮
 
-![image-20211108220224170](https://github.com/SilenceEvans/machine_learning/images/readme_images/0.png)
+![image-20211108220224170](https://github.com/SilenceEvans/machine_learning/blob/master/images/readme_images/0.png)
 
 选择Add
 
-![截屏2021-11-08 下午10.03.01](https://github.com/SilenceEvans/machine_learning/images/readme_images/1.png)
+![截屏2021-11-08 下午10.03.01](https://github.com/SilenceEvans/machine_learning/blob/master/images/readme_images/1.png)
 
 选择Conda Environment，然后选择Existing Environment配置对应目录
 
-![image-20211108221057747](https://github.com/SilenceEvans/machine_learning/images/readme_images/2.png)
+![image-20211108221057747](https://github.com/SilenceEvans/machine_learning/blob/master/images/readme_images/2.png)
 
 配置Interpreter目录：
 
