@@ -348,5 +348,5 @@ $\omega := \omega - \frac{\partial J(\omega)}{\partial \omega}$
 - 保留所有的特征值，但是缩放参数$\theta_{j}$的值
 - 在我们有很多特征值的时候表现不错，每一个特征项为我们结果的预测都贡献出了一点效果
 
-
+ 
 
