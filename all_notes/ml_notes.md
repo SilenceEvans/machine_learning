@@ -348,5 +348,71 @@ $\omega := \omega - \frac{\partial J(\omega)}{\partial \omega}$
 - 保留所有的特征值，但是缩放参数$\theta_{j}$的值
 - 在我们有很多特征值的时候表现不错，每一个特征项为我们结果的预测都贡献出了一点效果
 
- 
+#### 深究$L_1$、$L_2$ 正则化背后的原理
+
+##### 表达式
+
+<img src="/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.21.25.png" alt="截屏2021-11-23 下午4.21.25" style="zoom:50%;" />
+
+$L_1$范数：
+
+<img src="/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.21.45.png" alt="截屏2021-11-23 下午4.21.45" style="zoom:50%;" />
+
+$L_2$范数：
+
+<img src="/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.22.12.png" alt="截屏2021-11-23 下午4.22.12" style="zoom:50%;" />
+
+这是我们常见到的形式，但实际上，这个形式是通过**拉格朗日乘数法**得到的，正则化项是有范围约束的：
+
+![截屏2021-11-23 下午4.26.11](/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.26.11.png)
+
+<img src="/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.26.57.png" alt="截屏2021-11-23 下午4.26.57" style="zoom:50%;" />
+
+我们在讲上图中的损失函数$J(W)$加上约束之后得到绿色的函数$L(W,\lambda)$，再加个$\lambda·C$得到了上图中红色的$L(W,\lambda)$，这个则是我们经常见到的正则化形式。
+
+> 为什么可以加上$\lambda·C$ ？
+>
+> 因为对于$L(W,\lambda)$我们求最小值时是对$\omega$求导，加上这一项，不加这一项都不影响整个函数取最小值时 $\omega$ 的取值
+
+为了便于描述，此处考虑$L_2$范数，三种不同$λ$的取值。损失函数中两个特征值，即两个维度的情况，它们对应的正则化项的表达式和原先损失函数在三维空间中的图形是（此处可以将$x,y$分别当作是我们损失函数中的系数$\omega_1,\omega_2$）
+
+![截屏2021-11-23 下午4.58.07](/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午4.58.07.png)
+
+在二维平面的投影为：
+
+<img src="/Users/chenxiwang/machine_learning/all_notes/images_of_all_notes/截屏2021-11-23 下午5.10.59.png" alt="截屏2021-11-23 下午5.10.59" style="zoom:50%;" />
+
+从图中我们可以看到$\lambda$取值越大，正则化项的函数从图中反映的为看起来为“$\lambda$越大，图形越瘦”，它与原先的损失函数的交线在平面上的投影的“$\lambda$越大，半径越小”。
+
+##### 什么时候取得最小值？
+
+对于这样一个加了正则项的损失函数：$J(W)+\lambda||W||_2$来说，什么时候取得最小值呢？
+
+从梯度角度考虑，凸函数总是梯度等于0时，函数取得最值。
+
+此时：
+
+​																$\nabla$$J(W)=-\lambda$$\nabla||W||_2$
+
+此时最小值的点对应到二维平面即是正则化范数和损失函数有相同取值的$\omega_1,\omega_2$构成的等值线相切的点：
+
+<img src="/Users/chenxiwang/Library/Application Support/typora-user-images/截屏2021-11-23 下午5.44.50.png" alt="截屏2021-11-23 下午5.44.50" style="zoom:50%;" />
+
+对应到三维空间中就是交线最低的位置处。
+
+##### 为什么$\lambda$取值越大，惩罚力度越大？
+
+我们从三维空间的图中可以看出“$\lambda$越大，图形越瘦”，它与原先的损失函数的交线在平面上的投影的“$\lambda$越大，半径越小”，而此时，我们得到的最小值对应的$\omega_1,\omega_2$也越靠近原点，这也就是我们对损失函数正则化的意义，缩小权重$\omega$的取值，让其尽可能的接近0。
+
+##### 为什么$L_1$范数容易获得稀疏解（稀疏参数）？
+
+![v2-a026e24156e13a1d14c43df26b9bd2a4_r](/Users/chenxiwang/machine_learning/all_notes/images_of_all_notes//v2-a026e24156e13a1d14c43df26b9bd2a4_r.jpeg)
+
+![v2-f6edae58134c5a26687c3883af48d5d5_r](/Users/chenxiwang/machine_learning/all_notes/images_of_all_notes/v2-f6edae58134c5a26687c3883af48d5d5_r.jpeg)
+
+![v2-3aaa69f70754c469bca5c8e4c3e161db_r](/Users/chenxiwang/machine_learning/all_notes/images_of_all_notes//v2-3aaa69f70754c469bca5c8e4c3e161db_r.jpeg)
+
+另，这篇文章对为什么$L_1$范数会使得特征稀疏有较完全的解释，可以参考：
+
+[https://www.yinxiang.com/everhub/note/a8049e1a-8145-4209-81e7-ff06e065ac06](https://www.yinxiang.com/everhub/note/a8049e1a-8145-4209-81e7-ff06e065ac06)
 
